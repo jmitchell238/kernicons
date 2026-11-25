@@ -1,0 +1,35 @@
+[package]
+name = "kernicons"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "MIT OR Apache-2.0"
+description = "Kernicons: the icon set from KernPage. 16px-grid SVG icons, themeable via currentColor, with hand-tuned size variants, rendered crisply with resvg (egui optional)"
+repository = "https://github.com/jmitchell238/kernicons"
+documentation = "https://docs.rs/kernicons"
+readme = "README.md"
+keywords = ["icons", "svg", "egui", "resvg", "gui"]
+categories = ["gui", "graphics", "rendering"]
+include = [
+    "/src/**",
+    "/icons/**",
+    "/examples/**",
+    "/tests/**",
+    "/README.md",
+    "/CHANGELOG.md",
+    "/LICENSE-MIT",
+    "/LICENSE-APACHE",
+]
+
+[features]
+default = ["egui"]
+# egui integration: `paint`, `rasterise`, `rasterise_svg`, and `Color` = `egui::Color32`.
+egui = ["dep:egui"]
+
+[dependencies]
+egui = { version = "0.37.0", default-features = false, optional = true }
+resvg = { version = "0.50", default-features = false }
+
+[dev-dependencies]
+# The gallery example draws text labels (system fonts) and saves PNGs.
+resvg = { version = "0.50", features = ["text", "system-fonts"] }
